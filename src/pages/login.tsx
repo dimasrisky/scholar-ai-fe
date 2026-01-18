@@ -1,3 +1,79 @@
+import { useForm, type SubmitHandler } from "react-hook-form"
+import type { AuthenticationFields } from "../types/authentication-fields"
+
+function LoginPage() {
+    const { 
+        register, 
+        handleSubmit,
+        formState: { errors, isSubmitting }
+    } = useForm<AuthenticationFields>()
+    const onSubmit: SubmitHandler<AuthenticationFields> = (data) => {
+        console.log(data);
+    }
+    return (
+        <>
+            <div className="bg-background-light min-h-screen flex flex-col font-display">
+                <Header />
+                <main className="flex-1 flex items-center justify-center px-4 pb-20">
+                    <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-105 flex flex-col">
+                        <div className="text-center mb-8">
+                            <h1 className="text-[#0d121b] text-[32px] font-bold leading-tight pt-6">Welcome Back</h1>
+                            <p className="text-slate-500 mt-2 text-base">Your academic AI assistant is ready.</p>
+                        </div>
+                        <div className="flex flex-col gap-4">
+                            <div className="flex flex-col w-full">
+                                <label className="flex flex-col w-full">
+                                    <p className="text-[#0d121b] text-sm font-semibold leading-normal pb-2">Email</p>
+                                    <input {...register("email", {
+                                        required: "Email is required.",
+                                        pattern: {
+                                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                            message: "Invalid email address."
+                                        }
+                                    })} className="flex w-full rounded-lg text-[#0d121b] focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfd7e7] bg-white focus:border-primary h-12 placeholder:text-slate-400 p-3.75 text-base font-normal" placeholder="e.g. example@gmail.com" type="email" />
+                                </label>
+                                {errors.email && (
+                                    <p className="text-red-400 text-xs leading-normal pb-2 mt-2">{errors.email.message}</p>
+                                )}
+                            </div>
+                            <div className="flex flex-col w-full">
+                                        <div className="flex justify-between items-end pb-2">
+                                            <p className="text-[#0d121b] text-sm font-semibold leading-normal">Password</p>
+                                    <a className="text-primary text-xs font-semibold hover:underline text-blue-400" href="#">Forgot password?</a>
+                                </div>
+                                <label className="flex flex-col w-full">
+                                    <input {...register("password", {
+                                        required: "Password is required.",
+                                        minLength: {
+                                            value: 8,
+                                            message: "Password must be at least 8 characters long."
+                                        }
+                                    })} className="flex w-full rounded-lg text-[#0d121b] focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfd7e7] bg-white focus:border-primary h-12 placeholder:text-slate-400 p-3.75 text-base font-normal" placeholder="••••••••" type="password" />
+                                </label>
+                                {errors.password && (
+                                    <p className="text-red-400 text-xs leading-normal pb-2 mt-2">{errors.password.message}</p>
+                                )}
+                            </div>
+                            <div className="flex pt-4">
+                                <button className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-wide bg-blue-700 transition-colors">
+                                    <span className="truncate">{isSubmitting ? "Signing in..." : "Sign In"}</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div className="mt-10 text-center">
+                            <p className="text-slate-600 text-sm">
+                                Don't have an account?
+                                <a className="text-primary font-bold hover:underline ml-1" href="#">Sign up</a>
+                            </p>
+                        </div>
+                    </form>
+                </main>
+            </div>
+            <Footer />
+        </>
+    )
+}
+
 function Header() {
     return (
         <>
@@ -26,54 +102,6 @@ function Footer() {
                     </div>
                 </div>
             </footer>
-        </>
-    )
-}
-
-
-function LoginPage() {
-    return (
-        <>
-            <div className="bg-background-light min-h-screen flex flex-col font-display">
-                <Header />
-                <main className="flex-1 flex items-center justify-center px-4 pb-20">
-                    <div className="w-full max-w-105 flex flex-col">
-                        <div className="text-center mb-8">
-                            <h1 className="text-[#0d121b] text-[32px] font-bold leading-tight pt-6">Welcome Back</h1>
-                            <p className="text-slate-500 mt-2 text-base">Your academic AI assistant is ready.</p>
-                        </div>
-                        <div className="flex flex-col gap-4">
-                            <div className="flex flex-col w-full">
-                                <label className="flex flex-col w-full">
-                                    <p className="text-[#0d121b] text-sm font-semibold leading-normal pb-2">Email</p>
-                                    <input className="flex w-full rounded-lg text-[#0d121b] focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfd7e7] bg-white focus:border-primary h-12 placeholder:text-slate-400 p-3.75 text-base font-normal" placeholder="e.g., example@gmail.com" type="email" />
-                                </label>
-                            </div>
-                            <div className="flex flex-col w-full">
-                                <div className="flex justify-between items-end pb-2">
-                                    <p className="text-[#0d121b] text-sm font-semibold leading-normal">Password</p>
-                                    <a className="text-primary text-xs font-semibold hover:underline text-blue-400" href="#">Forgot password?</a>
-                                </div>
-                                <label className="flex flex-col w-full">
-                                    <input className="flex w-full rounded-lg text-[#0d121b] focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfd7e7] bg-white focus:border-primary h-12 placeholder:text-slate-400 p-3.75 text-base font-normal" placeholder="••••••••" type="password" />
-                                </label>
-                            </div>
-                            <div className="flex pt-4">
-                                <button className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-wide bg-blue-700 transition-colors">
-                                    <span className="truncate">Sign In</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="mt-10 text-center">
-                            <p className="text-slate-600 text-sm">
-                                Don't have an account?
-                                <a className="text-primary font-bold hover:underline ml-1" href="#">Sign up</a>
-                            </p>
-                        </div>
-                    </div>
-                </main>
-            </div>
-            <Footer />
         </>
     )
 }

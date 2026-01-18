@@ -13,7 +13,6 @@ function RegisterPage() {
             setError("confirmPassword", { message: "Passwords do not match." });
             setError("password", { message: "Passwords do not match." });
         }
-
         console.log(data);
     }
 
