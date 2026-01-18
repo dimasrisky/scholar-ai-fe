@@ -1,5 +1,6 @@
 import { useForm, type SubmitHandler } from "react-hook-form"
 import type { AuthenticationFields } from "../types/authentication-fields"
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
     const {
@@ -10,6 +11,8 @@ function LoginPage() {
     const onSubmit: SubmitHandler<AuthenticationFields> = (data) => {
         console.log(data);
     }
+
+    const navigate = useNavigate()
     return (
         <>
             <div className="bg-background-light min-h-screen flex flex-col font-display">
@@ -63,7 +66,7 @@ function LoginPage() {
                         <div className="mt-10 text-center">
                             <p className="text-slate-600 text-sm">
                                 Don't have an account?
-                                <a className="text-primary font-bold hover:underline ml-1" href="#">Sign up</a>
+                                <a className="text-primary cursor-pointer font-bold hover:underline ml-1" onClick={() => navigate('/auth/register')}>Sign up</a>
                             </p>
                         </div>
                     </form>

@@ -1,5 +1,8 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type { AuthenticationFields } from "../types/authentication-fields";
+import { useMutation } from "@tanstack/react-query";
+import registerUser from "../utils/register-user";
+import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
     const { 
@@ -8,12 +11,26 @@ function RegisterPage() {
         setError,
         formState: { errors, isSubmitting }
     } = useForm<AuthenticationFields & { confirmPassword: string }>()
+
+    const navigate = useNavigate()
+    const mutation = useMutation({
+        mutationFn: registerUser,
+        onSuccess: () => {
+            alert("Registration successful");
+            navigate("/auth/login")
+        }
+    })
+
     const onSubmit: SubmitHandler<AuthenticationFields & { confirmPassword: string }> = (data) => {
         if(data.password !== data.confirmPassword) {
             setError("confirmPassword", { message: "Passwords do not match." });
             setError("password", { message: "Passwords do not match." });
+            return
         }
-        console.log(data);
+        mutation.mutate({
+            email: data.email,
+            password: data.password
+        })
     }
 
     return (
@@ -81,7 +98,7 @@ function RegisterPage() {
                         <div className="mt-10 text-center">
                             <p className="text-slate-600 text-sm">
                                 Already have an account?
-                                <a className="text-primary font-bold hover:underline ml-1" href="#">Log in</a>
+                                <a className="text-primary font-bold hover:underline cursor-pointer ml-1" onClick={() => navigate('/auth/login')}>Log in</a>
                             </p>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ import App from './App.tsx'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import LoginPage from './pages/login.tsx'
 import RegisterPage from './pages/register.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const router = createBrowserRouter([
   {
@@ -27,8 +28,12 @@ const router = createBrowserRouter([
   }
 ])
 
+const queryClient = new QueryClient()
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </StrictMode>,
 )
