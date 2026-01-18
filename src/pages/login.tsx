@@ -1,18 +1,39 @@
 import { useForm, type SubmitHandler } from "react-hook-form"
 import type { AuthenticationFields } from "../types/authentication-fields"
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import loginUser from "../utils/login-user";
 
 function LoginPage() {
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
+        setError,
         formState: { errors, isSubmitting }
     } = useForm<AuthenticationFields>()
+
+    const mutation = useMutation({
+        mutationFn: loginUser,
+        onSuccess: (data) => {
+            alert("Login successful");
+            localStorage.setItem("accessToken", data.data.accessToken);
+            localStorage.setItem("refreshToken", data.data.refreshToken);
+            navigate("/dashboard");
+        },
+        onError: () => {
+            setError("email", { message: "Invalid email or password." });
+            setError("password", { message: "Invalid email or password." });
+        }
+    })
+
     const onSubmit: SubmitHandler<AuthenticationFields> = (data) => {
-        console.log(data);
+        mutation.mutate({
+            email: data.email,
+            password: data.password
+        })
     }
 
-    const navigate = useNavigate()
     return (
         <>
             <div className="bg-background-light min-h-screen flex flex-col font-display">
@@ -46,11 +67,7 @@ function LoginPage() {
                                 </div>
                                 <label className="flex flex-col w-full">
                                     <input {...register("password", {
-                                        required: "Password is required.",
-                                        minLength: {
-                                            value: 8,
-                                            message: "Password must be at least 8 characters long."
-                                        }
+                                        required: "Password is required."
                                     })} className="flex w-full rounded-lg text-[#0d121b] focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfd7e7] bg-white focus:border-primary h-12 placeholder:text-slate-400 p-3.75 text-base font-normal" placeholder="••••••••" type="password" />
                                 </label>
                                 {errors.password && (

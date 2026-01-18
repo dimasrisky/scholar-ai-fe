@@ -63,11 +63,7 @@ function RegisterPage() {
                                 <label className="flex flex-col w-full">
                                     <p className="text-[#0d121b] text-sm font-semibold leading-normal pb-2">Password</p>
                                     <input {...register("password", {
-                                        required: "Password is required.",
-                                        minLength: {
-                                            value: 8,
-                                            message: "Password must be at least 8 characters long."
-                                        }
+                                        required: "Password is required."
                                     })} className="flex w-full rounded-lg text-[#0d121b] focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfd7e7] bg-white focus:border-primary h-12 placeholder:text-slate-400 p-3.75 text-base font-normal" name="password" placeholder="••••••••" type="password" />
                                     {errors.password && (
                                         <p className="text-red-400 text-xs leading-normal pb-2 mt-2">{errors.password.message}</p>
@@ -78,11 +74,7 @@ function RegisterPage() {
                                 <label className="flex flex-col w-full">
                                     <p className="text-[#0d121b] text-sm font-semibold leading-normal pb-2">Confirm Password</p>
                                     <input {...register("confirmPassword", {
-                                        required: "Password is required.",
-                                        minLength: {
-                                            value: 8,
-                                            message: "Password must be at least 8 characters long."
-                                        }
+                                        required: "Password is required."
                                     })} className="flex w-full rounded-lg text-[#0d121b] focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfd7e7] bg-white focus:border-primary h-12 placeholder:text-slate-400 p-3.75 text-base font-normal" name="confirmPassword" placeholder="••••••••" type="password" />
                                     {errors.confirmPassword && (
                                         <p className="text-red-400 text-xs leading-normal pb-2 mt-2">{errors.confirmPassword.message}</p>

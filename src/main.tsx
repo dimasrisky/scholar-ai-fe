@@ -6,6 +6,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import LoginPage from './pages/login.tsx'
 import RegisterPage from './pages/register.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import DashboardPage from './pages/dashboard.tsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,15 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <RegisterPage />
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    children: [
+      {
+        index: true,
+        element: <DashboardPage />
       }
     ]
   }
