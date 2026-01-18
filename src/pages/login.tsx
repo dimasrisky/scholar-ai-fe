@@ -2,8 +2,8 @@ import { useForm, type SubmitHandler } from "react-hook-form"
 import type { AuthenticationFields } from "../types/authentication-fields"
 
 function LoginPage() {
-    const { 
-        register, 
+    const {
+        register,
         handleSubmit,
         formState: { errors, isSubmitting }
     } = useForm<AuthenticationFields>()
@@ -37,8 +37,8 @@ function LoginPage() {
                                 )}
                             </div>
                             <div className="flex flex-col w-full">
-                                        <div className="flex justify-between items-end pb-2">
-                                            <p className="text-[#0d121b] text-sm font-semibold leading-normal">Password</p>
+                                <div className="flex justify-between items-end pb-2">
+                                    <p className="text-[#0d121b] text-sm font-semibold leading-normal">Password</p>
                                     <a className="text-primary text-xs font-semibold hover:underline text-blue-400" href="#">Forgot password?</a>
                                 </div>
                                 <label className="flex flex-col w-full">
