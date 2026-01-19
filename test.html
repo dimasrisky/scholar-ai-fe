@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Document Dashboard - Research AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        body {
+         font-family: 'Inter', sans-serif;
+         }
+         .material-symbols-outlined {
+         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+         }
+         .material-symbols-outlined.fill {
+         font-variation-settings: 'FILL' 1;
+         }
+      </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+    <div class="flex min-h-screen">
+        <aside
+            class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col fixed h-full z-20">
+            <div class="p-6 flex flex-col h-full">
+                <div class="flex items-center gap-3 mb-10">
+                    <div
+                        class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white flex-shrink-0">
+                        <span class="material-symbols-outlined text-2xl fill">school</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-slate-900 dark:text-white text-base font-bold leading-none tracking-tight">
+                            Research AI</h1>
+                        <p
+                            class="text-slate-500 dark:text-slate-400 text-[10px] font-semibold uppercase tracking-wider mt-1">
+                            University Assistant</p>
+                    </div>
+                </div>
+                <nav class="flex flex-col gap-1.5 flex-1">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group"
+                        href="#">
+                        <span
+                            class="material-symbols-outlined text-[22px] group-hover:text-slate-900 dark:group-hover:text-white">dashboard</span>
+                        <span class="text-sm font-medium">Dashboard</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white shadow-sm shadow-primary/20 transition-colors"
+                        href="#">
+                        <span class="material-symbols-outlined fill text-[22px]">description</span>
+                        <span class="text-sm font-semibold">Documents</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group"
+                        href="#">
+                        <span
+                            class="material-symbols-outlined text-[22px] group-hover:text-slate-900 dark:group-hover:text-white">chat_bubble</span>
+                        <span class="text-sm font-medium">Chat</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group"
+                        href="#">
+                        <span
+                            class="material-symbols-outlined text-[22px] group-hover:text-slate-900 dark:group-hover:text-white">history</span>
+                        <span class="text-sm font-medium">History</span>
+                    </a>
+                </nav>
+                <div class="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group"
+                        href="#">
+                        <span
+                            class="material-symbols-outlined text-[22px] group-hover:text-slate-900 dark:group-hover:text-white">settings</span>
+                        <span class="text-sm font-medium">Settings</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+        <main class="flex-1 ml-64 min-h-screen">
+            <div class="max-w-5xl mx-auto px-8 py-8">
+                <div class="flex flex-wrap justify-between items-end gap-4 mb-8">
+                    <div class="flex flex-col gap-1">
+                        <h2 class="text-slate-900 dark:text-white text-3xl font-black tracking-tight">Documents</h2>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">You have 12 documents indexed in your
+                            research library.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="relative w-64">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl leading-none">search</span>
+                            <input
+                                class="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                placeholder="Search documents..." type="text" />
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-10">
+                    <div
+                        class="flex flex-col items-center gap-4 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-slate-800/30 px-6 py-12 transition-all hover:bg-white dark:hover:bg-slate-800/50 group cursor-pointer">
+                        <div
+                            class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2 transition-transform group-hover:scale-110">
+                            <span class="material-symbols-outlined text-2xl">upload_file</span>
+                        </div>
+                        <div class="flex max-w-[480px] flex-col items-center gap-1 text-center">
+                            <p class="text-slate-900 dark:text-white text-lg font-bold">Upload Research Documents</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm">
+                                Drag and drop your research PDFs here or click to browse. <br />
+                                Supported format: PDF (Max 50MB).
+                            </p>
+                        </div>
+                        <button
+                            class="mt-2 flex min-w-[120px] items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold tracking-wide hover:bg-primary/90 transition-colors">
+                            Select Files
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4 px-1">
+                    <h3 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">Your Library</h3>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500 uppercase tracking-wider">
+                        Sort by: <span class="text-primary cursor-pointer hover:underline font-bold">Date Added</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 text-[11px] font-bold uppercase tracking-widest">
+                                <th class="py-4 px-6 w-10">
+                                    <input
+                                        class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary w-4 h-4"
+                                        type="checkbox" />
+                                </th>
+                                <th class="py-4 px-4">Name</th>
+                                <th class="py-4 px-4 w-40">Status</th>
+                                <th class="py-4 px-4 w-48 text-center">Include in Brain</th>
+                                <th class="py-4 px-6 w-10"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                <td class="py-4 px-6">
+                                    <input checked=""
+                                        class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary w-4 h-4"
+                                        type="checkbox" />
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-red-500 fill">picture_as_pdf</span>
+                                        <span
+                                            class="text-sm font-medium text-slate-900 dark:text-slate-200">Neural_Networks_Thesis_Final.pdf</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-[11px] font-bold uppercase tracking-tight bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        Ready
+                                    </span>
+                                </td>
+                                <td class="py-4 px-4 text-center">
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input checked="" class="sr-only peer" type="checkbox" />
+                                        <div
+                                            class="relative w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                        </div>
+                                    </label>
+                                </td>
+                                <td class="py-4 px-6 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                <td class="py-4 px-6">
+                                    <input
+                                        class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary w-4 h-4"
+                                        type="checkbox" />
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-red-500 fill">picture_as_pdf</span>
+                                        <span
+                                            class="text-sm font-medium text-slate-900 dark:text-slate-200">Ethics_in_AI_Survey_2023.pdf</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-[11px] font-bold uppercase tracking-tight bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                                        Processing
+                                    </span>
+                                </td>
+                                <td class="py-4 px-4 text-center">
+                                    <label class="inline-flex items-center cursor-not-allowed opacity-50">
+                                        <input class="sr-only peer" disabled="" type="checkbox" />
+                                        <div
+                                            class="relative w-9 h-5 bg-slate-200 rounded-full peer dark:bg-slate-700 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 transition-all">
+                                        </div>
+                                    </label>
+                                </td>
+                                <td class="py-4 px-6 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                <td class="py-4 px-6">
+                                    <input checked=""
+                                        class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary w-4 h-4"
+                                        type="checkbox" />
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-red-500 fill">picture_as_pdf</span>
+                                        <span
+                                            class="text-sm font-medium text-slate-900 dark:text-slate-200">Attention_Is_All_You_Need.pdf</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-[11px] font-bold uppercase tracking-tight bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        Ready
+                                    </span>
+                                </td>
+                                <td class="py-4 px-4 text-center">
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input checked="" class="sr-only peer" type="checkbox" />
+                                        <div
+                                            class="relative w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                        </div>
+                                    </label>
+                                </td>
+                                <td class="py-4 px-6 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                <td class="py-4 px-6">
+                                    <input
+                                        class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary w-4 h-4"
+                                        type="checkbox" />
+                                </td>
+                                <td class="py-4 px-4">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-red-500 fill">picture_as_pdf</span>
+                                        <span
+                                            class="text-sm font-medium text-slate-900 dark:text-slate-200">Reinforcement_Learning_Intro.pdf</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-[11px] font-bold uppercase tracking-tight bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        Ready
+                                    </span>
+                                </td>
+                                <td class="py-4 px-4 text-center">
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input class="sr-only peer" type="checkbox" />
+                                        <div
+                                            class="relative w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary">
+                                        </div>
+                                    </label>
+                                </td>
+                                <td class="py-4 px-6 text-right">
+                                    <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-6 flex items-center justify-between px-1">
+                    <p class="text-sm text-slate-500">Showing 4 of 12 documents</p>
+                    <div class="flex gap-2">
+                        <button
+                            class="px-4 py-1.5 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-white dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled="">Previous</button>
+                        <button
+                            class="px-4 py-1.5 text-sm font-medium border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Next</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
