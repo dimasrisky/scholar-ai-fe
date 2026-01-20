@@ -1,20 +1,32 @@
 import { useForm, type SubmitHandler } from "react-hook-form"
 import CardDocument from "../components/CardDocument"
 import Sidebar from "../components/Sidebar"
+import { useMutation } from "@tanstack/react-query"
+import { uploadFile } from "../utils/upload-file"
 
 type FileInput = {
     file: FileList
 }
 
 function DashboardPage() {
-    const { register, handleSubmit, watch } = useForm<FileInput>()
-
-    const statusFile = watch("file")
-
+    const { register, handleSubmit, watch, setError, formState: { errors } } = useForm<FileInput>()
+    const mutation = useMutation({
+        mutationFn: uploadFile,
+        onSuccess: () => {
+            alert("File successfully uploaded")
+        }
+    })
+    const file = watch("file")
     const onSubmit: SubmitHandler<FileInput> = (data) => {
-        console.log(data);
+        if (data.file.length != 1) {
+            setError("file", {
+                message: "must contain 1 file"
+            })
+        }
+        const formData = new FormData()
+        formData.append("file", data.file[0])
+        mutation.mutate(formData)
     }
-
     return (
         <>
             <Sidebar />
@@ -39,31 +51,49 @@ function DashboardPage() {
                                     className="relative flex flex-col items-center gap-4 rounded-xl border-2 border-dashed border-slate-300 bg-white/50/30 px-6 py-12 transition-all hover:bg-white hover:border-primary/50 group cursor-pointer">
                                     <input
                                         type="file"
+                                        accept="application/pdf"
                                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                                         {...register("file", {
                                             required: 'File is required'
                                         })}
                                     />
-                                    <div className="pointer-events-none flex flex-col items-center gap-4">
-                                        <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                                            <svg className="w-8 h-8 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div className="pointer-events-none flex max-w-120 flex-col items-center gap-1 text-center">
-                                        <p className="text-slate-900 text-lg font-bold">Upload Research Documents</p>
-                                        <p className="text-slate-500 text-sm">
-                                            Drag and drop your research PDFs here or click to browse. <br />
-                                            Supported format: PDF (Max 50MB).
+                                    {(file && file.length > 0) && (
+                                        <iframe
+                                            src={URL.createObjectURL(file && file[0])}
+                                            width="6%"
+                                            height="100"
+                                            title="PDF Preview"
+                                        />
+                                    )}
+                                    {(file && file.length <= 0) && (
+                                        <>
+                                            <div className="pointer-events-none flex flex-col items-center gap-4">
+                                                <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                                    <svg className="w-8 h-8 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div className="pointer-events-none flex max-w-120 flex-col items-center gap-1 text-center">
+                                                <p className="text-slate-900 text-lg font-bold">Upload Research Documents</p>
+                                                <p className="text-slate-500 text-sm">
+                                                    Drag and drop your research PDFs here or click to browse. <br />
+                                                    Supported format: PDF (Max 50MB).
+                                                </p>
+                                            </div>
+                                        </>
+                                    )}
+                                    {errors.file && (
+                                        <p className="text-red-500 text-sm">
+                                            {errors.file.message}
                                         </p>
-                                    </div>
-                                    {(statusFile && statusFile.length > 0) && (
-                                        <button className="pointer-events-none mt-2 flex min-w-30 items-center bg-blue-700 justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold tracking-wide group-hover:bg-primary/90 transition-colors">
-                                            Upload File
-                                        </button>
                                     )}
                                 </div>
+                                {(file && file.length > 0) && (
+                                    <button type="submit" className="cursor-pointer mt-2 flex min-w-30 items-center bg-blue-700 justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold tracking-wide group-hover:bg-primary/90 transition-colors">
+                                        Upload File
+                                    </button>
+                                )}
                             </form>
                             <div className="flex items-center justify-between mb-4 px-1">
                                 <h3 className="text-slate-900 text-xl font-bold tracking-tight">Your Library</h3>

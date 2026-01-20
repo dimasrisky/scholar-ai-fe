@@ -1,9 +1,11 @@
+import { Navigate, Outlet } from "react-router-dom"
+
 function App() {
-  return (
-    <>
-      <h1 className="text-red-500">Test</h1>
-    </>
-  )
+  if(localStorage.getItem("accessToken")){
+    return <Outlet />
+  }else{
+    return <Navigate to={'/auth/login'} />
+  }
 }
 
 export default App

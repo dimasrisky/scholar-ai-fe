@@ -11,7 +11,18 @@ import DashboardPage from './pages/dashboard.tsx'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App/>
+    element: <App />,
+    children: [
+      {
+        path: '/dashboard',
+        children: [
+          {
+            index: true,
+            element: <DashboardPage />
+          }
+        ]
+      }
+    ]
   },
   {
     path: 'auth',
@@ -27,15 +38,6 @@ const router = createBrowserRouter([
       }
     ]
   },
-  {
-    path: '/dashboard',
-    children: [
-      {
-        index: true,
-        element: <DashboardPage />
-      }
-    ]
-  }
 ])
 
 const queryClient = new QueryClient()
