@@ -1,19 +1,25 @@
 import { useForm, type SubmitHandler } from "react-hook-form"
 import CardDocument from "../components/CardDocument"
 import Sidebar from "../components/Sidebar"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { uploadFile } from "../utils/upload-file"
+import { getDocuments } from "../utils/get-documents"
 
 type FileInput = {
     file: FileList
 }
 
 function DashboardPage() {
-    const { register, handleSubmit, watch, setError, formState: { errors } } = useForm<FileInput>()
+    const { register, handleSubmit, watch, setError, formState: { errors }, reset } = useForm<FileInput>()
+    const queryClient = useQueryClient()
     const mutation = useMutation({
         mutationFn: uploadFile,
         onSuccess: () => {
             alert("File successfully uploaded")
+            queryClient.invalidateQueries({
+                queryKey: ["documents"]
+            })
+            reset()
         }
     })
     const file = watch("file")
@@ -27,6 +33,13 @@ function DashboardPage() {
         formData.append("file", data.file[0])
         mutation.mutate(formData)
     }
+
+
+    // Query documents
+    const { data, isLoading } = useQuery({
+        queryKey: ['documents'],
+        queryFn: getDocuments
+    })
     return (
         <>
             <Sidebar />
@@ -113,7 +126,9 @@ function DashboardPage() {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-100">
-                                        <CardDocument />
+                                        {!isLoading && data.data.map((document: { filename: string }, index: number) => (
+                                            <CardDocument key={index} title={document.filename} status="Ready" />
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>
