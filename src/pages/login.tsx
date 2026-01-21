@@ -22,6 +22,7 @@ function LoginPage() {
             navigate("/dashboard");
         },
         onError: () => {
+            alert("Login failed");
             setError("email", { message: "Invalid email or password." });
             setError("password", { message: "Invalid email or password." });
         }

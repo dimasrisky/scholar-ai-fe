@@ -32,8 +32,8 @@ function Sidebar() {
                     </nav>
                     <div className="pt-6 mt-6 border-t border-slate-100">
                         <a className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group" href="#">
-                            <span className="material-symbols-outlined text-[22px] group-hover:text-slate-900">settings</span>
-                            <span className="text-sm font-medium">Settings</span>
+                            <span className="material-symbols-outlined text-[22px] group-hover:text-slate-900"></span>
+                            <span className="text-sm font-medium">Logout</span>
                         </a>
                     </div>
                 </div>
