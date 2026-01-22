@@ -3,6 +3,7 @@ import type { AuthenticationFields } from "../types/authentication-fields"
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import loginUser from "../utils/login-user";
+import LoadingScreen from "../components/LoadingScreen";
 
 function LoginPage() {
     const navigate = useNavigate()
@@ -33,6 +34,10 @@ function LoginPage() {
             email: data.email,
             password: data.password
         })
+    }
+
+    if (isSubmitting) {
+        return <LoadingScreen message="Signing in..." />
     }
 
     return (

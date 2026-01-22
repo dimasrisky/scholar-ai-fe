@@ -8,6 +8,7 @@ import RegisterPage from './pages/register.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import DashboardPage from './pages/dashboard.tsx'
 import Chat from './pages/chat.tsx'
+import LoadingScreen from './components/LoadingScreen.tsx'
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
         element: <RegisterPage />
       }
     ]
-  },
+  }
 ])
 
 const queryClient = new QueryClient()

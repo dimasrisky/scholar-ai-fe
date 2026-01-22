@@ -1,4 +1,13 @@
+import { useNavigate } from "react-router-dom"
+
 function Sidebar() {
+    const navigate = useNavigate()
+
+    const logout = () => {
+        localStorage.clear()
+        navigate('/')
+    }
+
     return (
         <>
             <aside className="w-64 border-r border-slate-200 bg-white flex flex-col fixed h-full z-20">
@@ -13,7 +22,7 @@ function Sidebar() {
                         </div>
                     </div>
                     <nav className="flex flex-col gap-1.5 flex-1">
-                        <a className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group" href="#">
+                        <a onClick={() => navigate('/dashboard')} className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group">
                             <span className="material-symbols-outlined text-[22px] group-hover:text-slate-900">dashboard</span>
                             <span className="text-sm font-medium">Dashboard</span>
                         </a>
@@ -21,7 +30,7 @@ function Sidebar() {
                             <span className="material-symbols-outlined fill text-[22px]">description</span>
                             <span className="text-sm font-semibold">Documents</span>
                         </a>
-                        <a className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group" href="#">
+                        <a onClick={() => navigate('/dashboard/chat')} className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group">
                             <span className="material-symbols-outlined text-[22px] group-hover:text-slate-900">chat_bubble</span>
                             <span className="text-sm font-medium">Chat</span>
                         </a>
@@ -31,7 +40,7 @@ function Sidebar() {
                         </a>
                     </nav>
                     <div className="pt-6 mt-6 border-t border-slate-100">
-                        <a className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group" href="#">
+                        <a onClick={logout} className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group">
                             <span className="material-symbols-outlined text-[22px] group-hover:text-slate-900"></span>
                             <span className="text-sm font-medium">Logout</span>
                         </a>

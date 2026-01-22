@@ -13,8 +13,6 @@ export async function currentUser() {
             throw result
         }
 
-        console.log(result);
-
         return result
     }catch(err){
         throw err

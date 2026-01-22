@@ -1,21 +1,27 @@
 import { useQuery } from "@tanstack/react-query"
 import { Navigate, Outlet } from "react-router-dom"
 import { currentUser } from "./utils/current-user"
+import LoadingScreen from "./components/LoadingScreen"
 
 function App() {
-  const { data, isSuccess, isLoading } = useQuery({
+  const { isSuccess, isLoading, isError } = useQuery({
     queryKey: ['user'],
     queryFn: currentUser
   })
 
-  console.log(isSuccess);
-  console.log(data);
+  if (isLoading) {
+    return <LoadingScreen message="Redirecting..." />
+  }
 
-  if(isSuccess && !isLoading){
+  if (isSuccess) {
     return <Outlet />
-  }else if(!isLoading) {
+  }
+
+  if (isError) {
     return <Navigate to={'/auth/login'} />
   }
+
+  return <LoadingScreen message="Loading..." />
 }
 
 export default App
