@@ -109,7 +109,7 @@ function Header() {
                     <div className="size-6 text-primary">
                         <span className="material-symbols-outlined text-3xl">school</span>
                     </div>
-                    <h2 className="text-lg font-bold leading-tight tracking-tight">My Thesis Brain</h2>
+                    <h2 className="text-lg font-bold leading-tight tracking-tight">ScholarAI</h2>
                 </div>
             </header>
         </>
@@ -121,7 +121,7 @@ function Footer() {
         <>
             <footer className="w-full py-8 px-6 border-t border-slate-200">
                 <div className="max-w-240 mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
-                    <p>© 2023 My Thesis Brain. Built for Researchers.</p>
+                    <p>© 2023 ScholarAI. Built for Researchers.</p>
                     <div className="flex gap-6">
                         <a className="hover:text-primary transition-colors" href="#">Privacy Policy</a>
                         <a className="hover:text-primary transition-colors" href="#">Terms of Service</a>
