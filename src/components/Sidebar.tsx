@@ -5,7 +5,7 @@ function Sidebar() {
 
     const logout = () => {
         localStorage.clear()
-        navigate('/')
+        window.location.href = '/'
     }
 
     return (
@@ -39,11 +39,11 @@ function Sidebar() {
                             <span className="text-sm font-medium">History</span>
                         </a>
                     </nav>
-                    <div className="pt-6 mt-6 border-t border-slate-100">
-                        <a onClick={logout} className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group">
-                            <span className="material-symbols-outlined text-[22px] group-hover:text-slate-900"></span>
+                    <div onClick={logout} className="pt-6 mt-6 border-t border-slate-100 cursor-pointer">
+                        <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors group">
+                            <span className="material-symbols-outlined text-[22px] group-hover:text-slate-900">logout</span>
                             <span className="text-sm font-medium">Logout</span>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </aside>
