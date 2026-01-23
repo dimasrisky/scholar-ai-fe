@@ -2,19 +2,22 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 import LoginPage from './pages/login.tsx'
 import RegisterPage from './pages/register.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import DashboardPage from './pages/dashboard.tsx'
 import Chat from './pages/chat.tsx'
-import LoadingScreen from './components/LoadingScreen.tsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
+      {
+        index: true,
+        element: <Navigate to="dashboard" replace />
+      },
       {
         path: '/dashboard',
         children: [

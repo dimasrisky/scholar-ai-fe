@@ -1,4 +1,5 @@
 import Sidebar from "../components/Sidebar"
+import UserMessage from "../components/UserMessage"
 
 function Chat() {
     return (
@@ -38,19 +39,8 @@ function Chat() {
                         {/* Chat Messages */}
                         <div className="space-y-6">
                             {/* User Message */}
-                            <div className="flex items-end gap-3 justify-end">
-                                <div className="flex flex-col gap-1.5 items-end max-w-[75%]">
-                                    <p className="text-slate-500 text-[12px] font-medium px-1">You</p>
-                                    <div className="rounded-2xl rounded-br-md px-5 py-3.5 bg-linear-to-br from-primary to-blue-600 text-white shadow-lg shadow-primary/20">
-                                        <p className="text-base font-normal leading-relaxed">What are the common themes regarding
-                                            sustainable development in these papers?</p>
-                                    </div>
-                                    <p className="text-[10px] text-slate-400 px-1">2:30 PM</p>
-                                </div>
-                                <div className="bg-linear-to-br from-slate-200 to-slate-300 aspect-square rounded-full w-9 shrink-0 flex items-center justify-center overflow-hidden shadow-md">
-                                    <span className="material-symbols-outlined text-slate-600 text-lg">person</span>
-                                </div>
-                            </div>
+                            <UserMessage message="What are the common themes regarding
+                            sustainable development in these papers?" time="10:10 PM"/>
 
                             {/* Assistant Message */}
                             <div className="flex items-start gap-3">
